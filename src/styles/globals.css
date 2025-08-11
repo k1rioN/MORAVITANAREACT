@@ -16,43 +16,62 @@ body { background:#fff; }
 
 /* Фон для всей области контента.
    Используем main как общий контейнер (если у тебя другой — замени селектор). */
-main {
-  position: relative;
-  z-index: 0;
-}
+/* базовые фоны корня документа */
+html { background:#fff; }
+body { background: transparent; }
 
-/* Тайлим «пятна» по оси Y: два варианта рисунка чередуются через 100vh */
-main::before {
+/* весь контент поверх фонового слоя */
+#root { position: relative; z-index: 1; }
+
+/* общий фон — фиксированный, тянется под всю страницу и не режется футером */
+html::before {
   content: "";
-  position: absolute;
-  inset: 0 -10vw;         /* чуть шире вьюпорта, чтобы края не обрезались */
-  z-index: -1;
+  position: fixed;
+  inset: -10vh -10vw;
+  z-index: 0;
   pointer-events: none;
 
-  /* 1-й тайл (0 → 100vh) */
   background:
     radial-gradient(60vh 36vh at 20% 24%, rgba(136,121,255,.12), transparent 60%),
     radial-gradient(52vh 32vh at 80% 72%, rgba(195,189,255,.12), transparent 62%),
-
-  /* 2-й тайл (смещён на 100vh вниз) */
     radial-gradient(60vh 36vh at 78% 28%, rgba(136,121,255,.12), transparent 60%),
     radial-gradient(52vh 32vh at 22% 74%, rgba(195,189,255,.12), transparent 62%);
 
-  /* каждый слой занимает 100vh по высоте, повторяем по Y */
-  background-size:
-    100% 100vh, 100% 100vh,
-    100% 100vh, 100% 100vh;
-
-  /* первые два слоя рисуем в «первом тайле» (top),
-     вторые два — сразу ниже на +100vh */
-  background-position:
-    center   0,
-    center   0,
-    center 100vh,
-    center 100vh;
-
+  background-size: 100% 100vh, 100% 100vh, 100% 100vh, 100% 100vh;
+  background-position: center 0, center 0, center 100vh, center 100vh;
   background-repeat: repeat-y;
+
+  animation: bg-drift 90s ease-in-out infinite alternate;
+  will-change: background-position;
 }
+
+/* Крупные экраны — чуть больше пятна */
+@media (min-width: 1440px) {
+  html::before {
+    background:
+      radial-gradient(70vh 42vh at 22% 26%, rgba(136,121,255,.12), transparent 60%),
+      radial-gradient(60vh 36vh at 78% 68%, rgba(195,189,255,.12), transparent 62%),
+      radial-gradient(70vh 42vh at 78% 28%, rgba(136,121,255,.12), transparent 60%),
+      radial-gradient(60vh 36vh at 22% 74%, rgba(195,189,255,.12), transparent 62%);
+  }
+}
+
+/* Мобилки — компактнее и ближе к центру */
+@media (max-width: 768px) {
+  html::before {
+    background:
+      radial-gradient(46vh 28vh at 50% 22%, rgba(136,121,255,.12), transparent 62%),
+      radial-gradient(40vh 24vh at 50% 78%, rgba(195,189,255,.12), transparent 64%),
+      radial-gradient(46vh 28vh at 50% 22%, rgba(136,121,255,.12), transparent 62%),
+      radial-gradient(40vh 24vh at 50% 78%, rgba(195,189,255,.12), transparent 64%);
+  }
+}
+
+/* уважаем настройки доступности */
+@media (prefers-reduced-motion: reduce) {
+  html::before { animation: none; }
+}
+
 
 /* Крупные экраны — чуть больше пятна */
 @media (min-width: 1440px) {
@@ -98,3 +117,62 @@ input, select, textarea { font-size: 16px; }
 .min-w-0 { min-width: 0; }
 .min-h-0 { min-height: 0; }
 
+@keyframes bg-drift {
+  0% {
+    background-position:
+      50%    0,
+      50%    0,
+      50%  100vh,
+      50%  100vh;
+  }
+  50% {
+    /* лёгкий горизонтальный и вертикальный дрейф в пределах нескольких vw/vh */
+    background-position:
+      calc(50% + 2vw)   2vh,
+      calc(50% - 2vw)  -1vh,
+      calc(50% - 1vw) calc(100vh + 3vh),
+      calc(50% + 1vw) calc(100vh - 2vh);
+  }
+  100% {
+    background-position:
+      50%    0,
+      50%    0,
+      50%  100vh,
+      50%  100vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main::before { animation: none; }
+}
+
+/* базовые фоны корня документа */
+html { background:#fff; }
+body { background: transparent; }
+
+/* весь контент поверх фонового слоя */
+#root { position: relative; z-index: 1; }
+
+/* общий фон — фиксированный, тянется под всю страницу и не режется футером */
+html::before {
+  content: "";
+  position: fixed;
+  inset: -10vh -10vw;
+  z-index: 0;                 /* без отрицательных значений */
+  pointer-events: none;
+
+  background:
+    radial-gradient(60vh 36vh at 20% 24%, rgba(136,121,255,.12), transparent 60%),
+    radial-gradient(52vh 32vh at 80% 72%, rgba(195,189,255,.12), transparent 62%),
+    radial-gradient(60vh 36vh at 78% 28%, rgba(136,121,255,.12), transparent 60%),
+    radial-gradient(52vh 32vh at 22% 74%, rgba(195,189,255,.12), transparent 62%);
+
+  background-size: 100% 100vh, 100% 100vh, 100% 100vh, 100% 100vh;
+  background-position: center 0, center 0, center 100vh, center 100vh;
+  background-repeat: repeat-y;
+
+  animation: bg-drift 90s ease-in-out infinite alternate;
+  will-change: background-position;
+}
+
+/* на всякий случай: не отключай overflow у html/body */

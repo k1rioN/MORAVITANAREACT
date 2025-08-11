@@ -1,5 +1,6 @@
 import Section from '../components/Section'
 import Reveal from '../components/Reveal'
+import Typewriter from '../components/Typewriter'
 
 export default function About() {
   return (
