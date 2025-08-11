@@ -13,16 +13,16 @@ export default function Approach() {
               жизненные сценарии и обмен «поглаживаниями», чтобы расширять выбор и контакт.
             </p>
             <ul className="mt-6 grid gap-3 text-slate-700">
-              <li className="card px-4 py-3">• Совместная постановка целей</li>
-              <li className="card px-4 py-3">• Фокус на «здесь‑и‑сейчас»</li>
-              <li className="card px-4 py-3">• Чёткие договорённости и границы</li>
+              <li className="card px-4 py-3 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">• Совместная постановка целей</li>
+              <li className="card px-4 py-3 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">• Фокус на «здесь‑и‑сейчас»</li>
+              <li className="card px-4 py-3 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">• Чёткие договорённости и границы</li>
             </ul>
           </div>
         </Reveal>
         <Reveal delay={0.1}>
           <div className="grid grid-cols-3 gap-4">
             {['Родитель', 'Взрослый', 'Ребёнок'].map((e, i) => (
-              <div key={i} className="aspect-square rounded-2xl card grid place-items-center text-sm">
+              <div key={i} className="aspect-square rounded-2xl card grid place-items-center text-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
                 {e}
               </div>
             ))}

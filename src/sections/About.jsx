@@ -21,9 +21,9 @@ export default function About() {
               Бережный стиль, прозрачные договорённости, поддержка в темпе клиента.
             </p>
             <ul className="mt-6 grid gap-3 text-slate-700">
-              <li className="card px-4 py-3">• Сертификация: Транзактный анализ</li>
-              <li className="card px-4 py-3">• Темы: тревога, отношения, самооценка</li>
-              <li className="card px-4 py-3">• Формат: очно / онлайн</li>
+              <li className="card px-4 py-3 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">• Сертификация: Транзактный анализ</li>
+              <li className="card px-4 py-3 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">• Темы: тревога, отношения, самооценка</li>
+              <li className="card px-4 py-3 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">• Формат: очно / онлайн</li>
             </ul>
           </div>
         </Reveal>
