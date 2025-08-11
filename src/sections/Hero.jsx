@@ -23,7 +23,7 @@ export default function Hero() {
           </div>
           <ul className="mt-10 grid grid-cols-3 gap-4 max-w-lg text-sm">
             {['Спокойно', 'Конфиденциально', 'Научно обосновано'].map((t, i) => (
-              <li key={i} className="card px-4 py-4 text-center flex items-center justify-center min-h-[64px]">{t}</li>
+              <li key={i} className="card px-4 py-4 text-center flex items-center justify-center min-h-[64px] transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">{t}</li>
             ))}
           </ul>
         </Reveal>
