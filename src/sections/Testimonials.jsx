@@ -17,7 +17,7 @@ export default function Testimonials() {
       <div className="mt-10 grid md:grid-cols-3 gap-6">
         {t.map((item, i) => (
           <Reveal key={i} delay={i * 0.05}>
-            <blockquote className="card p-6 text-slate-700">
+            <blockquote className="card p-6 text-slate-700 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
               <p>“{item.q}”</p>
               <footer className="mt-4 text-sm text-slate-500">— {item.a}</footer>
             </blockquote>

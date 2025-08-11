@@ -1,5 +1,6 @@
 import Section from '../components/Section'
 import Reveal from '../components/Reveal'
+import Typewriter from '../components/Typewriter'
 
 export default function Hero() {
   return (
@@ -9,6 +10,9 @@ export default function Hero() {
           <h1 className="headline text-[clamp(28px,5vw,48px)] leading-tight">
             <span className="block">Моравская Татьяна</span>
             <span className="block text-slate-600 text-[clamp(16px,2.2vw,24px)] mt-3">Транзактный аналитик</span>
+            <div className="mt-2 text-slate-500 text-[clamp(14px,2vw,20px)]">
+              <Typewriter phrases={['Бережно и конфиденциально', 'Поддержка в вашем темпе', 'Онлайн и очно']} />
+            </div>
           </h1>
           <p className="mt-6 text-slate-600 max-w-xl">
             Изменяясь сами, мы меняем не только качество своей жизни, но также влияем на мировоззрение и будущее своих детей, близких, передавая им новые навыки, новый позитивный опыт, свое новое отношение к жизни.
