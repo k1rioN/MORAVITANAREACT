@@ -31,7 +31,13 @@ export default function Navbar() {
       <div className={clsx('mx-auto container rounded-2xl px-4', scrolled ? 'glass' : 'bg-white/40 backdrop-blur-md border border-slate-200/60')}>
         <div className="flex items-center justify-between h-14">
           <a href="#home" className="flex items-center gap-2 font-semibold">
-            <img src="/logo.svg" alt="logo" className="w-8 h-8"/>
+            <span className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-200 to-violet-200 grid place-items-center">
+            
+              <span className="text-indigo-700">
+                
+                <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg>
+              </span>
+            </span>
             <span>MORAVITANA</span>
           </a>
           <nav className="hidden md:flex items-center gap-x-6 gap-y-2 text-sm flex-wrap">
